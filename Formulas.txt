@@ -1,0 +1,46 @@
+Main formulas used
+
+Revenue After Fee:
+=Promo Price × (1 - Platform Fee %) 
+ 
+Profit
+=Revenue After Fee - Cost Price
+
+Margin %
+=Profit / Revenue After Fee
+
+vsCompetitor
+=Promo Price - Competitor Price
+
+Status
+=IF(Profit < 0, "LOSS RISK", IF(Margin < 0.05, "Tight Margin", "OK"))
+
+Risk Level
+=IF(Status = "LOSS RISK", "CRITICAL", IF(Margin < 0.02, "High Risk", "Medium"))
+
+Working Sheet:
+
+Cost Price (VLOOKUP)
+=VLOOKUP(Product Code, Cleaned data range, 5, FALSE)
+
+
+KPI Summary Formulas:
+
+Total Products
+=COUNTA(Working sheet range) - 1
+
+Highest Margin
+=MAX(Margin % range)
+
+Average Margin
+=AVERAGE(Margin % range)
+
+Lowest Margin
+=MIN(Margin % range)
+
+Products at Risk (<5%)
+=COUNTIF(Margin % range, "<0.05")
+
+Loss Risk Products
+=COUNTIF(Status range, "LOSS RISK")
+
